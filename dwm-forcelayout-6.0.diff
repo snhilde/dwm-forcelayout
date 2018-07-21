@@ -1,0 +1,43 @@
+diff --git a/config.def.h b/config.def.h
+index 77ff358..bdb9397 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -33,6 +33,12 @@ static const Layout layouts[] = {
+ 	{ "><>",      NULL },    /* no layout function means floating behavior */
+ 	{ "[M]",      monocle },
+ };
+
++static const Taglayout taglayouts[] = {
++	/* tag		layout */
++	{ 9,		{.v = &layouts[2]} },
++};
++
+ /* key definitions */
+ #define MODKEY Mod1Mask
+diff --git a/dwm.c b/dwm.c
+index 1d78655..4e81b81 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -154,6 +154,11 @@ typedef struct {
+ 	int monitor;
+ } Rule;
+ 
++typedef struct {
++	int tag;
++	const Arg arg;
++} Taglayout;
++
+ /* function declarations */
+ static void applyrules(Client *c);
+ static Bool applysizehints(Client *c, int *x, int *y, int *w, int *h, Bool interact);
+@@ -2050,6 +2055,10 @@ view(const Arg *arg) {
+ 		selmon->tagset[selmon->seltags] = arg->ui & TAGMASK;
+ 	focus(NULL);
+ 	arrange(selmon);
++	
++	for (int i = 0; i < LENGTH(taglayouts); i++)
++		if (arg->ui & 1 << (taglayouts[i].tag - 1))
++			setlayout(&taglayouts[i].arg);
+ }
+ 
+ Client *
