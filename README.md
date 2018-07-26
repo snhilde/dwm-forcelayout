@@ -1,11 +1,11 @@
 # dwm-forcelayout
-This patch for [dwm](https://dwm.suckless.org/) forces a tag to stick to a certain layout. This is handy for automatically switching at launch time to a layout other than the default for tabs that have applications pinned to them, like tab 9 and firefox. It just makes the experience that much more seamless so you can focus on the real work. Of course, this assumes you are following the tags-as-workspaces paradigm, like I do. Don't tell the [lead developer of dmenu](http://web.archive.org/web/20120120161931/http://lubutu.com/rant/dwm-faq).
+This patch for [dwm](https://dwm.suckless.org/) forces a tag to stick to a certain layout. This is handy for automatically switching at launch time to a layout other than the default for tags that have applications pinned to them, like tag 9 and firefox. It just makes the experience that much more seamless so you can focus on the real work. Of course, this assumes you are following the tags-as-workspaces paradigm, like I do. Don't tell the [lead developer of dmenu](http://web.archive.org/web/20120120161931/http://lubutu.com/rant/dwm-faq).
 
 ## Installation
 The patch assumes a fresh copy of dwm. Beyond that, you may have to edit the source code by hand.
 In the root directory, run this command:
 ```
-patch -b < /path/to/patch.diff
+patch -b < /path/to/dwm-forcelayout-version.diff
 ```
 That's it. If anything failed, then fire up your preferred editor and get those hands dirty.
 
